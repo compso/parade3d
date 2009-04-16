@@ -1,0 +1,47 @@
+#!/bin/csh -f
+
+set parade = parade3d-bin
+
+
+if ( ! $?PARADE3D_ROOT ) then
+
+    if ( "$0" =~ /* ) then
+		set me = "$0"
+    else
+		set me = `pwd`/$0
+    endif
+
+    while ( -l "$me" )
+		set linkdirname = `dirname "$me"`
+		set me = `/bin/ls $lsFlags "$me" | tr ' ' '\012' | tail -n 1`
+		if ( "$me" !~ /* ) then
+			set me = "$linkdirname/$me"
+		endif
+    end
+
+
+    set bindir = `dirname "$me"`
+    if ( -d "$bindir" ) then
+		set bindir = `cd "$bindir"; echo $cwd`
+    endif
+
+    set binfile = `basename "$bindir"`
+    if ( "$binfile" =~ "bin" ) then
+		# We cannot call setenv directly if there are spaces in the Path.
+		# We must use a temp variable.
+		set exec_loc = `dirname "$bindir"`
+		setenv PARADE3D_ROOT "$exec_loc"
+    endif
+
+
+endif
+
+if ( -x "${PARADE3D_ROOT}/bin/${parade}" ) then
+	set paradeapp = "${PARADE3D_ROOT}/bin/${parade}"
+else
+	unsetenv PARADE3D_ROOT
+endif
+
+setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH;$PARADE3D_ROOT/lib"
+cd $PARADE3D_ROOT
+$paradeapp 

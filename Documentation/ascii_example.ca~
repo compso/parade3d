@@ -1,0 +1,105 @@
+<!--
+	candylab scene spec 0.1
+-->
+
+<fileinfo>
+	<software>Maya2009</software>
+	<datetime>2009,02,16,16:06</datetime>
+	<user>ashleyr</user>	
+</fileinfo>
+
+<!-- Scene Setup -->
+
+<SCENE>
+<!-- Add elements to scene -->
+	<instance>
+		<name>example</name>
+		<geo>exampleMesh</geo>
+		<translate>0.0 0.0 0.0</translate>
+		<rotate>0.0 0.0 0.0</rotate>
+		<scale>1.0 1.0 1.0</scale>
+	</instance>
+</SCENE>
+
+<!-- Camera -->
+
+<CAMERA>
+	<translation>0.0,0.0,0.0</translation>
+	<rotation>0.0,0.0,0.0</rotation>
+	<angle>35.0</angle>
+</CAMERA>
+	
+<!-- Material Definitions -->
+
+<MATERIAL>
+	<name>o_blinn</name>
+	<shader>blinn</shader>
+	<diffuse>0.5,0.5,0.5</diffuse>
+	<spec>1.0,1.0,1.0</spec>
+	<transparency>1.0,1.0,1.0</transparency>
+	<objects>
+		exampleMesh
+	</objects>
+</MATERIAL>
+
+<!-- Mesh definitions -->
+
+<MESH>	
+	<name>exampleMesh</name>
+	<vertex_count>#</vertex_count>
+	<normal_count>#</normal_count> 
+	<tex_coord_count>#</tex_coord_count>
+	<face_count>#</face_count>
+	<boundingbox>[x,y,z],[x,y,z]</boundingbox>
+	<vert>
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+	</vert>
+	<normal>
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+		x	y	z
+	</normal>
+	<coord>
+		u	v
+		u	v
+		u	v
+		u	v
+	</coord>
+	<face>
+		x	y	z
+		x	y	z
+		x	y	z
+	</face>
+	<face>
+		x	y	z
+		x	y	z
+		x	y	z
+	</face>
+	<face>
+		x	y	z
+		x	y	z
+		x	y	z
+	</face>
+	<face>
+		x	y	z
+		x	y	z
+		x	y	z
+	</face>
+</MESH>
+
+
+

@@ -1,0 +1,13 @@
+Elements for parade 3d:
+
+
+main.cpp
+
+viewer.cpp
+viewer.h
+
+fileops.cpp
+fileops.h
+
+p3dloader.cpp
+p3dloader.h

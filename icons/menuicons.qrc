@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/menu/cb" >
+        <file>checkboxOff.png</file>
+        <file>checkboxOn.png</file>
+    </qresource>
+</RCC>
