@@ -27,20 +27,23 @@ SOURCES = src/mainwindowimpl.cpp \
     src/formats/Mesh.cpp \
     src/objects.cpp \
     src/glview.cpp
-win32: {
-message(Building for Windows)
-LIBS = -L"P:\dev\Tools\Parade\Parade3D\lib" -lQGLViewer2 \
-     -L"C:\Program Files\NVIDIA Corporation\Cg\bin" \
-    -lCg  \
-    -lglut32 \
-    -lCgGL
-INCLUDEPATH = "C:\Program files\libQGLViewer" "C:\Program Files\NVIDIA Corporation\Cg\include"
-} else {
-message(Building for unix or mac os X)
-LIBS = -lQGLViewer \
-    -lCg \
-    -lglut \
-    -lCgGL
+win32: { 
+    message(Building for Windows)
+    LIBS = -L"P:\dev\Tools\Parade\Parade3D\lib" \
+        -lQGLViewer2 \
+        -L"C:\Program Files\NVIDIA Corporation\Cg\bin" \
+        -lCg \
+        -lglut32 \
+        -lCgGL
+    INCLUDEPATH = "C:\Program files\libQGLViewer" \
+        "C:\Program Files\NVIDIA Corporation\Cg\include"
+}
+else { 
+    message(Building for unix or mac os X)
+    LIBS = -lQGLViewer \
+        -lCg \
+        -lglut \
+        -lCgGL
 }
 TARGET = parade3d-bin
 RESOURCES += icons/menuicons.qrc
@@ -57,3 +60,5 @@ DISTFILES += icons/*.png \
     README \
     License/gpl-3.0.txt \
     bin/parade3d
+OTHER_FILES += TODO \
+    README
