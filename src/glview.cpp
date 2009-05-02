@@ -1,6 +1,7 @@
 /****************************************************************************
 Custom libQGLViewer declaration added primative commands
 
+
 *****************************************************************************/
 
 #include "glview.h"
@@ -8,11 +9,16 @@ Custom libQGLViewer declaration added primative commands
 #include "formats/Mesh.h"
 #include <math.h>
 #include <qtimer.h>
+#include <qcursor.h>
+#include <qmap.h>
 #include <string.h>
 #include <stdlib.h>
 #include <qfiledialog.h>
 #include <Cg/cg.h>		/* Cg Core API: Can't include this?  Is Cg Toolkit installed! */
 #include <Cg/cgGL.h>	/* Cg OpenGL API (part of Cg Toolkit) */
+
+# include <QKeyEvent>
+# include <QMouseEvent>
 
 #ifdef _WIN32
 #include <sys/time.h>
@@ -238,6 +244,48 @@ void GLView::drawCornerAxis()
 	// The viewport and the scissor are restored.
 	glScissor(scissor[0],scissor[1],scissor[2],scissor[3]);
 	glViewport(viewport[0],viewport[1],viewport[2],viewport[3]);
+}
+
+
+void GLView::keyPressEvent(QKeyEvent *e)
+{
+  // Get event modifiers key
+#if QT_VERSION < 0x040000
+  // Bug in Qt : use 0x0f00 instead of Qt::KeyButtonMask with Qt versions < 3.1
+  const Qt::ButtonState modifiers = (Qt::ButtonState)(e->state() & Qt::KeyButtonMask);
+#else
+  const Qt::KeyboardModifiers modifiers = e->modifiers();
+#endif
+
+  // A simple switch on e->key() is not sufficient if we want to take state key into account.
+  // With a switch, it would have been impossible to separate 'F' from 'CTRL+F'.
+  // That's why we use imbricated if...else and a "handled" boolean.
+  bool handled = false;
+  if ((e->key()==Qt::Key_W) && (modifiers==Qt::NoButton))
+    {
+      wireframe_ = !wireframe_;
+      if (wireframe_)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+      else
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+      handled = true;
+      updateGL();
+    }
+  else
+    if ((e->key()==Qt::Key_F) && (modifiers==Qt::NoButton))
+      {
+        flatShading_ = !flatShading_;
+        if (flatShading_)
+          glShadeModel(GL_FLAT);
+        else
+          glShadeModel(GL_SMOOTH);
+        handled = true;
+        updateGL();
+      }
+  // ... and so on with other else/if blocks.
+
+  if (!handled)
+    QGLViewer::keyPressEvent(e);
 }
 
 void GLView::drawSpiral()
