@@ -54,6 +54,7 @@ protected :
 	 virtual void draw();
 	 virtual void init();
 	 virtual QString helpString() const;
+         virtual void keyPressEvent(QKeyEvent *e);
   
 private :
 	void drawCornerAxis();
@@ -67,6 +68,7 @@ private :
 	bool parGridIsDrawn_;
 	bool parFPSIsDrawn_;
 	int drawMode_;
+        bool wireframe_, flatShading_;
 
 };
 
