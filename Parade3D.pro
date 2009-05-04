@@ -14,6 +14,8 @@ CONFIG += qt \
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
+SUBDIRS =   \
+            \mayaplugin
 BUILDDIR = build
 UI_DIR = build
 FORMS = ui/mainwindow.ui
@@ -42,7 +44,6 @@ else {
     message(Building for unix or mac os X)
     LIBS = -lQGLViewer \
         -lCg \
-        -lglut \
         -lCgGL
 }
 TARGET = parade3d-bin

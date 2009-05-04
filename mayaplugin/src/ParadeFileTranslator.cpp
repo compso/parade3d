@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------
-///	\file    	MayaFileTranslator.cpp
+///	\file    	ParadeFileTranslator.cpp
 ///	\date   	24/4/2004   16:39
 ///	\author		Rob Bateman
 ///	\brief      
@@ -37,7 +37,7 @@
 #include <fstream>
 #include <iostream>
 
-#include "MayaFileTranslator.h"
+#include "ParadeFileTranslator.h"
 
 #include <maya/MArgList.h>
 #include <maya/MFileObject.h>
@@ -54,18 +54,18 @@
 
 
 
-//-------------------------------------------------------------------	MayaFileTranslator
+//-------------------------------------------------------------------	ParadeFileTranslator
 ///	\brief  ctor
 ///
-MayaFileTranslator::MayaFileTranslator(void)
+ParadeFileTranslator::ParadeFileTranslator(void)
 {
 	m_bShort = false;
 }
 
-//-------------------------------------------------------------------	~MayaFileTranslator
+//-------------------------------------------------------------------	~ParadeFileTranslator
 ///	\brief  dtor	
 ///
-MayaFileTranslator::~MayaFileTranslator(void)
+ParadeFileTranslator::~ParadeFileTranslator(void)
 {
 }
 
@@ -77,7 +77,7 @@ MayaFileTranslator::~MayaFileTranslator(void)
 ///			interface through to the read function
 /// \param	mode	-	ignore for reading
 ///
-MStatus	MayaFileTranslator::reader( const MFileObject& file,
+MStatus	ParadeFileTranslator::reader( const MFileObject& file,
 				   const MString& options,
 				   FileAccessMode mode)
 {
@@ -92,7 +92,7 @@ MStatus	MayaFileTranslator::reader( const MFileObject& file,
 /// \param	mode	-	all or selected
 ///	\return	status code
 ///
-MStatus	MayaFileTranslator::writer( const MFileObject& file,
+MStatus	ParadeFileTranslator::writer( const MFileObject& file,
 				   const MString& options,
 				   FileAccessMode mode )
 {
@@ -202,7 +202,7 @@ MStatus	MayaFileTranslator::writer( const MFileObject& file,
 ///	\brief  returns true if the file translator supports importing 
 ///	\return	false
 ///
-bool  MayaFileTranslator::haveReadMethod	 () const {
+bool  ParadeFileTranslator::haveReadMethod	 () const {
 	return false;
 }
 
@@ -211,7 +211,7 @@ bool  MayaFileTranslator::haveReadMethod	 () const {
 ///	\brief  returns true if the file translator supports exporting 
 ///	\return	true
 ///
-bool MayaFileTranslator::haveWriteMethod	 () const {
+bool ParadeFileTranslator::haveWriteMethod	 () const {
 	return true;
 }
 
@@ -220,7 +220,7 @@ bool MayaFileTranslator::haveWriteMethod	 () const {
 ///	\brief  returns the file extension of this format
 ///	\return	"rob"
 ///
-MString MayaFileTranslator::defaultExtension () const {
+MString ParadeFileTranslator::defaultExtension () const {
 	return "p3d";
 }
 
@@ -236,7 +236,7 @@ MString MayaFileTranslator::defaultExtension () const {
 /// \param	size		-	number of bytes in buffer
 ///	\return	returns is my file type or is not my file type
 ///
-MPxFileTranslator::MFileKind MayaFileTranslator::identifyFile(	const MFileObject& fileName,
+MPxFileTranslator::MFileKind ParadeFileTranslator::identifyFile(	const MFileObject& fileName,
 						 const char* buffer,
 						 short size) const {
 	const char* str = fileName.name().asChar();
@@ -255,8 +255,8 @@ MPxFileTranslator::MFileKind MayaFileTranslator::identifyFile(	const MFileObject
 ///			returns the address of a new instance of your node.
 ///	\return  new file translator node
 ///
-void* MayaFileTranslator::creator() {
-	return new MayaFileTranslator;
+void* ParadeFileTranslator::creator() {
+        return new ParadeFileTranslator;
 }
 
 

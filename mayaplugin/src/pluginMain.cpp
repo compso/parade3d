@@ -12,7 +12,7 @@
 **/ 
 //--------------------------------------------------------------------------
 
-#include "MayaFileTranslator.h"
+#include "ParadeFileTranslator.h"
 #include <maya/MStatus.h>
 #include <maya/MObject.h>
 #include <maya/MFnPlugin.h>
@@ -64,7 +64,7 @@ MLL_EXPORT MStatus initializePlugin( MObject obj )
 
 	// Register the translator with the system
 	status =  plugin.registerFileTranslator( "Parade3d", "none",
-		MayaFileTranslator::creator,
+                ParadeFileTranslator::creator,
 		(char*)g_OptionScript,
 		(char*)g_DefaultOptions );  
 

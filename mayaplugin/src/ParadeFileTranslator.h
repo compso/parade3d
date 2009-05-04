@@ -35,8 +35,8 @@
 /// 
 //--------------------------------------------------------------------------
 
-#ifndef __MayaFileTranslator__H__
-#define __MayaFileTranslator__H__
+#ifndef __ParadeFileTranslator__H__
+#define __ParadeFileTranslator__H__
 
 #ifdef WIN32
 	#pragma once
@@ -53,7 +53,7 @@
 //-----------------------------------------------------------------------
 /// \brief	This class defines the main file translator class.
 ///
-class MayaFileTranslator :
+class ParadeFileTranslator :
 	public MPxFileTranslator
 {
 public:
@@ -61,12 +61,12 @@ public:
 	//-------------------------------------------------------------------
 	///	\brief	ctor  
 	///	
-	MayaFileTranslator(void);
+        ParadeFileTranslator(void);
 
 	//-------------------------------------------------------------------
 	///	\brief	dtor  
 	///	
-	~MayaFileTranslator(void);
+        ~ParadeFileTranslator(void);
 
 
 	//-------------------------------------------------------------------
