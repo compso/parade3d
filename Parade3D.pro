@@ -1,4 +1,5 @@
 TEMPLATE = app
+VERSION = 0.1.0
 QT = gui \
     core \
     xml \
@@ -10,12 +11,10 @@ CONFIG += qt \
     x11 \
     staticlib \
     app_bundle \
-    debug_and_release
+    release
 DESTDIR = bin
 OBJECTS_DIR = build
 MOC_DIR = build
-SUBDIRS =   \
-            \mayaplugin
 BUILDDIR = build
 UI_DIR = build
 FORMS = ui/mainwindow.ui
@@ -52,8 +51,7 @@ DISTFILES += icons/*.png \
     icons/*.svg \
     lib/*.so \
     Documentation/* \
-    mayaplugin/Makefile \
-    mayaplugin/buildconfig \
+    mayaplugin/mayaplugin.pro \
     mayaplugin/scripts/*.mel \
     mayaplugin/src/*.cpp \
     mayaplugin/src/*.h \
@@ -61,5 +59,3 @@ DISTFILES += icons/*.png \
     README \
     License/gpl-3.0.txt \
     bin/parade3d
-OTHER_FILES += TODO \
-    README
