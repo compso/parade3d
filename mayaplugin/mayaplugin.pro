@@ -9,8 +9,8 @@ VER_MAJ = 0
 VER_MIN = 1
 VER_PAT = 0
 
-QMAKE_CC			= gcc-4.1
-QMAKE_CXX			= g++-4.1
+QMAKE_CC		= gcc-4.1
+QMAKE_CXX		= g++-4.1
 
 MAYA_LOCATION		= /home/Apps/Maya
 MAYA_VERSION		= 10.0_2009
@@ -29,6 +29,7 @@ INCLUDEPATH             = $${MAYA_LOCATION}/maya2009-x64/include \
 LIBS                    = -L$${MAYA_LOCATION}/maya2009-x64/lib -lFoundation -lOpenMaya -lGL -lGLU -lm 	\
                             -lMaya -lOpenMaya -lOpenMayaAnim 			\
                         -lOpenMayaUI -lOpenMayalib
+
 TARGET = parade3d-$${MAYA_VERSION}_$${BUILD_VERSION}
 DESTDIR = bin
 
