@@ -10,9 +10,8 @@ TARGET = parade3d_help
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        helpwindow.cpp
+SOURCES += src/*.cpp
 
-HEADERS  += helpwindow.h
+HEADERS  += src/*.h
 
-FORMS    += helpwindow.ui
+FORMS    += ui/helpwindow.ui
