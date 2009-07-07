@@ -33,8 +33,8 @@ class GLView : public QGLViewer
 public :
 	GLView(QWidget *parent);
 	static void myDrawGrid(float size=1.0f, int nbSubdivisions=10);
-	bool parGridIsDrawn() const { return parGridIsDrawn_; };
-	bool parFPSIsDrawn() const { return parFPSIsDrawn_; };
+        bool parGridIsDrawn() const { return parGridIsDrawn_; }
+        bool parFPSIsDrawn() const { return parFPSIsDrawn_; }
 	
 public slots :
         void homeView();
@@ -43,13 +43,13 @@ public slots :
 	void drawCube();
 	void loadFile(QString filename);
 	//Grid
-	void parSetGridIsDrawn(bool draw=true) { parGridIsDrawn_ = draw; emit parGridIsDrawnChanged(draw); updateGL(); };
-	void parToggleGridIsDrawn() { parSetGridIsDrawn(!parGridIsDrawn()); };
+        void parSetGridIsDrawn(bool draw=true) { parGridIsDrawn_ = draw; emit parGridIsDrawnChanged(draw); updateGL(); }
+        void parToggleGridIsDrawn() { parSetGridIsDrawn(!parGridIsDrawn()); }
 	//FPS
-	void parSetFPSIsDrawn(bool draw=true) { parFPSIsDrawn_ = draw; emit parFPSIsDrawnChanged(draw); updateGL(); };
-	void parToggleFPSIsDrawn() { parSetFPSIsDrawn(!parFPSIsDrawn()); };
+        void parSetFPSIsDrawn(bool draw=true) { parFPSIsDrawn_ = draw; emit parFPSIsDrawnChanged(draw); updateGL(); }
+        void parToggleFPSIsDrawn() { parSetFPSIsDrawn(!parFPSIsDrawn()); }
 	//Draw Mode default 9=poly display, 3=wireframe
-	void setMode(int mode=9) { drawMode_ = mode; emit modeChanged(mode); updateGL(); };
+        void setMode(int mode=9) { drawMode_ = mode; emit modeChanged(mode); updateGL(); }
 
 signals :
 	void parGridIsDrawnChanged(bool drawn);
