@@ -22,12 +22,13 @@ HEADERS = src/mainwindowimpl.h \
     src/formats/Mesh.h \
     build/ui_mainwindow.h \
     src/objects.h \
-    src/glview.h
+    src/glwidget.h
 SOURCES = src/mainwindowimpl.cpp \
     src/main.cpp \
     src/formats/Mesh.cpp \
     src/objects.cpp \
-    src/glview.cpp
+    src/glwidget.cpp
+
 win32: { 
     message(Building for Windows)
     LIBS = -L"P:\dev\Tools\Parade\Parade3D\lib" \

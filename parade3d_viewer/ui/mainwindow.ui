@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ui version="4.0">
+<ui version="4.0" >
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="windowModality">
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="windowModality" >
    <enum>Qt::ApplicationModal</enum>
   </property>
-  <property name="geometry">
+  <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
@@ -13,11 +12,11 @@
     <height>385</height>
    </rect>
   </property>
-  <property name="windowTitle">
+  <property name="windowTitle" >
    <string>Parade 3D</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: rgb(50, 50, 50);
+  <property name="styleSheet" >
+   <string notr="true" >background-color: rgb(50, 50, 50);
 selection-color: rgb(200, 200, 255);
 alternate-background-color: rgb(80, 80, 80);
 gridline-color: rgb(0, 0, 0);
@@ -25,297 +24,296 @@ border-color: rgb(60, 60, 60);
 color: rgb(255, 255, 255);
 selection-background-color: rgb(70, 70, 70);</string>
   </property>
-  <property name="unifiedTitleAndToolBarOnMac">
+  <property name="unifiedTitleAndToolBarOnMac" >
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="margin">
+  <widget class="QWidget" name="centralwidget" >
+   <layout class="QHBoxLayout" name="horizontalLayout" >
+    <property name="margin" >
      <number>0</number>
     </property>
     <item>
-     <widget class="GLView" name="viewer" native="true"/>
+     <widget class="GLWidget" native="1" name="viewer" />
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
     <rect>
      <x>0</x>
      <y>0</y>
      <width>598</width>
-     <height>27</height>
+     <height>28</height>
     </rect>
    </property>
-   <property name="autoFillBackground">
+   <property name="autoFillBackground" >
     <bool>false</bool>
    </property>
-   <property name="styleSheet">
-    <string notr="true">font: 8pt &quot;Sans Serif&quot;;</string>
+   <property name="styleSheet" >
+    <string notr="true" >font: 8pt "Sans Serif";</string>
    </property>
-   <property name="defaultUp">
+   <property name="defaultUp" >
     <bool>false</bool>
    </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="styleSheet">
-     <string notr="true"/>
+   <widget class="QMenu" name="menuFile" >
+    <property name="styleSheet" >
+     <string notr="true" />
     </property>
-    <property name="tearOffEnabled">
+    <property name="tearOffEnabled" >
      <bool>false</bool>
     </property>
-    <property name="title">
+    <property name="title" >
      <string>File</string>
     </property>
-    <addaction name="actionClear_Scene"/>
-    <addaction name="actionOpen"/>
-    <addaction name="separator"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionClear_Scene" />
+    <addaction name="actionOpen" />
+    <addaction name="separator" />
+    <addaction name="actionQuit" />
    </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="styleSheet">
-     <string notr="true"/>
+   <widget class="QMenu" name="menuView" >
+    <property name="styleSheet" >
+     <string notr="true" />
     </property>
-    <property name="title">
+    <property name="title" >
      <string>View</string>
     </property>
-    <property name="separatorsCollapsible">
+    <property name="separatorsCollapsible" >
      <bool>false</bool>
     </property>
-    <addaction name="separator"/>
-    <addaction name="actionAxis"/>
-    <addaction name="actionGrid"/>
-    <addaction name="actionDefault_Home"/>
-    <addaction name="separator"/>
-    <addaction name="actionFps"/>
-    <addaction name="actionWireframe"/>
-    <addaction name="actionTextured"/>
-    <addaction name="actionShaded"/>
-    <addaction name="actionLighting"/>
-    <addaction name="separator"/>
-    <addaction name="actionFullscreen"/>
+    <addaction name="separator" />
+    <addaction name="actionAxis" />
+    <addaction name="actionGrid" />
+    <addaction name="actionDefault_Home" />
+    <addaction name="separator" />
+    <addaction name="actionFps" />
+    <addaction name="actionWireframe" />
+    <addaction name="actionTextured" />
+    <addaction name="actionShaded" />
+    <addaction name="actionLighting" />
+    <addaction name="separator" />
+    <addaction name="actionFullscreen" />
    </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="styleSheet">
-     <string notr="true"/>
+   <widget class="QMenu" name="menuEdit" >
+    <property name="styleSheet" >
+     <string notr="true" />
     </property>
-    <property name="title">
+    <property name="title" >
      <string>Edit</string>
     </property>
-    <addaction name="actionCube"/>
-    <addaction name="actionSpiral"/>
-    <addaction name="actionSettings"/>
+    <addaction name="actionCube" />
+    <addaction name="actionSpiral" />
+    <addaction name="actionSettings" />
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="styleSheet">
-     <string notr="true"/>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="styleSheet" >
+     <string notr="true" />
     </property>
-    <property name="title">
+    <property name="title" >
      <string>Help</string>
     </property>
-    <addaction name="actionHelp"/>
+    <addaction name="actionHelp" />
    </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuEdit"/>
-   <addaction name="menuView"/>
-   <addaction name="menuHelp"/>
+   <addaction name="menuFile" />
+   <addaction name="menuEdit" />
+   <addaction name="menuView" />
+   <addaction name="menuHelp" />
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionCube">
-   <property name="text">
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionCube" >
+   <property name="text" >
     <string>Cube</string>
    </property>
   </action>
-  <action name="actionGrid">
-   <property name="checkable">
+  <action name="actionGrid" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked">
-    <bool>false</bool>
+   <property name="checked" >
+    <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Grid</string>
    </property>
-   <property name="shortcut">
+   <property name="shortcut" >
     <string>G</string>
    </property>
   </action>
-  <action name="actionAxis">
-   <property name="checkable">
+  <action name="actionAxis" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked">
+   <property name="checked" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Axis</string>
    </property>
-   <property name="iconVisibleInMenu">
-    <bool>false</bool>
+   <property name="iconVisibleInMenu" >
+    <bool>true</bool>
    </property>
   </action>
-  <action name="actionOpen">
-   <property name="text">
+  <action name="actionOpen" >
+   <property name="text" >
     <string>Open</string>
    </property>
   </action>
-  <action name="actionSpiral">
-   <property name="text">
+  <action name="actionSpiral" >
+   <property name="text" >
     <string>Spiral</string>
    </property>
   </action>
-  <action name="actionHelp">
-   <property name="text">
+  <action name="actionHelp" >
+   <property name="text" >
     <string>Help</string>
    </property>
   </action>
-  <action name="actionQuit">
-   <property name="text">
+  <action name="actionQuit" >
+   <property name="text" >
     <string>Quit</string>
    </property>
   </action>
-  <action name="actionClear_Scene">
-   <property name="text">
+  <action name="actionClear_Scene" >
+   <property name="text" >
     <string>Clear Scene</string>
    </property>
   </action>
-  <action name="actionSettings">
-   <property name="text">
+  <action name="actionSettings" >
+   <property name="text" >
     <string>Settings</string>
    </property>
   </action>
-  <action name="actionShaded">
-   <property name="checkable">
+  <action name="actionShaded" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Shaded</string>
    </property>
   </action>
-  <action name="actionWireframe">
-   <property name="checkable">
+  <action name="actionWireframe" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked">
+   <property name="checked" >
     <bool>false</bool>
    </property>
-   <property name="enabled">
+   <property name="enabled" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Wireframe</string>
    </property>
   </action>
-  <action name="actionTextured">
-   <property name="checkable">
+  <action name="actionTextured" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Textured</string>
    </property>
   </action>
-  <action name="actionFps">
-   <property name="checkable">
+  <action name="actionFps" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="checked">
+   <property name="checked" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Fps</string>
    </property>
-   <property name="shortcut">
+   <property name="shortcut" >
     <string>F</string>
    </property>
   </action>
-  <action name="actionFullscreen">
-   <property name="checkable">
+  <action name="actionFullscreen" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Fullscreen</string>
    </property>
-   <property name="shortcut">
+   <property name="shortcut" >
     <string>Ctrl+F</string>
    </property>
   </action>
-  <action name="actionDefault_Home">
-   <property name="text">
+  <action name="actionDefault_Home" >
+   <property name="text" >
     <string>Default Home</string>
    </property>
   </action>
-  <action name="actionLighting">
-   <property name="checkable">
+  <action name="actionLighting" >
+   <property name="checkable" >
     <bool>true</bool>
    </property>
-   <property name="icon">
-    <iconset resource="../icons/menuicons.qrc">
+   <property name="icon" >
+    <iconset resource="../icons/menuicons.qrc" >
      <normaloff>:/menu/cb/checkboxOff.png</normaloff>
      <normalon>:/menu/cb/checkboxOn.png</normalon>:/menu/cb/checkboxOff.png</iconset>
    </property>
-   <property name="text">
+   <property name="text" >
     <string>Lighting</string>
    </property>
   </action>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>GLView</class>
+   <class>GLWidget</class>
    <extends>QWidget</extends>
-   <header>../src/glview.h</header>
+   <header>../src/glwidget.h</header>
    <container>1</container>
    <slots>
-    <signal>parGridIsDrawnChanged(bool)</signal>
-    <signal>axisIsDrawnChanged(bool)</signal>
-    <signal>parFPSIsDrawnChanged(bool)</signal>
     <slot>parSetGridIsDrawn(bool)</slot>
-    <slot>setAxisIsDrawn(bool)</slot>
+    <slot>parSetAxisIsDrawn(bool)</slot>
     <slot>drawSpiral()</slot>
     <slot>drawCube()</slot>
     <slot>loadFile()</slot>
-    <slot>help()</slot>
     <slot>clearScene()</slot>
     <slot>parSetFPSIsDrawn(bool)</slot>
     <slot>homeView()</slot>
+    <signal>parGridIsDrawnChanged(bool)</signal>
+    <signal>parAxisIsDrawnChanged(bool)</signal>
+    <signal>parFPSIsDrawnChanged(bool)</signal>
    </slots>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../icons/menuicons.qrc"/>
+  <include location="../icons/menuicons.qrc" />
  </resources>
  <connections>
   <connection>
@@ -324,11 +322,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>parSetGridIsDrawn(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>194</y>
     </hint>
@@ -338,13 +336,13 @@ selection-background-color: rgb(70, 70, 70);</string>
    <sender>actionAxis</sender>
    <signal>toggled(bool)</signal>
    <receiver>viewer</receiver>
-   <slot>setAxisIsDrawn(bool)</slot>
+   <slot>parSetAxisIsDrawn(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>194</y>
     </hint>
@@ -356,11 +354,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>actionGrid</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>298</x>
      <y>194</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -368,15 +366,15 @@ selection-background-color: rgb(70, 70, 70);</string>
   </connection>
   <connection>
    <sender>viewer</sender>
-   <signal>axisIsDrawnChanged(bool)</signal>
+   <signal>parAxisIsDrawnChanged(bool)</signal>
    <receiver>actionAxis</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>298</x>
      <y>194</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -388,29 +386,13 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>MainWindow</receiver>
    <slot>OpenFile()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>193</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionHelp</sender>
-   <signal>activated()</signal>
-   <receiver>viewer</receiver>
-   <slot>help()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>298</x>
-     <y>194</y>
     </hint>
    </hints>
   </connection>
@@ -420,11 +402,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>193</y>
     </hint>
@@ -436,11 +418,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>drawSpiral()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>194</y>
     </hint>
@@ -452,11 +434,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>drawCube()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>194</y>
     </hint>
@@ -468,11 +450,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>clearScene()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>194</y>
     </hint>
@@ -484,11 +466,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>parSetFPSIsDrawn(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>188</y>
     </hint>
@@ -500,11 +482,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>actionFps</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>298</x>
      <y>188</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -516,11 +498,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>MainWindow</receiver>
    <slot>parSetFullscreen(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>192</y>
     </hint>
@@ -532,11 +514,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>actionFullscreen</receiver>
    <slot>setChecked(bool)</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>298</x>
      <y>192</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -548,11 +530,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>viewer</receiver>
    <slot>homeView()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>298</x>
      <y>192</y>
     </hint>
@@ -564,11 +546,11 @@ selection-background-color: rgb(70, 70, 70);</string>
    <receiver>actionWireframe</receiver>
    <slot>toggle()</slot>
    <hints>
-    <hint type="sourcelabel">
+    <hint type="sourcelabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
-    <hint type="destinationlabel">
+    <hint type="destinationlabel" >
      <x>-1</x>
      <y>-1</y>
     </hint>
@@ -576,10 +558,10 @@ selection-background-color: rgb(70, 70, 70);</string>
   </connection>
  </connections>
  <slots>
-  <signal>parFullscreenChanged(bool)</signal>
   <slot>OpenFile()</slot>
   <slot>cube()</slot>
   <slot>spiral()</slot>
   <slot>parSetFullscreen(bool)</slot>
+  <signal>parFullscreenChanged(bool)</signal>
  </slots>
 </ui>

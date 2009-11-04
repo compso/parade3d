@@ -22,9 +22,10 @@ Custom libQGLViewer declaration added primative commands
 *****************************************************************************/
 
 #include "glview.h"
+
 #include "objects.h"
 #include "formats/Mesh.h"
-#include <math.h>
+
 #include <qtimer.h>
 #include <qcursor.h>
 #include <qmap.h>
@@ -36,6 +37,8 @@ Custom libQGLViewer declaration added primative commands
 
 # include <QKeyEvent>
 # include <QMouseEvent>
+
+#include <math.h>
 
 #ifdef _WIN32
 #include <sys/time.h>
@@ -53,8 +56,9 @@ GLView::GLView(QWidget *parent)
     : QGLViewer(parent)
 {
 	Objects* s = new Objects();
-	s->frame.setPosition(Vec(-0.5, -0.5, 0.0));
+        s->frame.setPosition(Vec(-0.5, -0.5, 0.0));
 	scene_.append(s);
+
 }
 
 void GLView::loadFile(QString filename)
@@ -96,7 +100,13 @@ void GLView::init()
 	//glEnable(GL_LIGHTING);
 	//glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
-	setKeyDescription(Qt::Key_L, "Loads a new mesh file");
+        setKeyDescription(Qt::Key_L, "Loads a new mesh file");
+
+        setManipulatedFrame(new ManipulatedFrame());
+        manipulatedFrame()->setSpinningSensitivity(1.0);
+        //manipulatedFrame()->setRotationSensitivity(100.0f);
+        //manipulatedFrame()->setTranslationSensitivity(100.0f);
+
 	//restoreStateFromFile();
 }
 

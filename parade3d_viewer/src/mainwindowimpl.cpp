@@ -15,7 +15,7 @@
 
 *************************************************/
 
-#include "glview.h"
+#include "glwidget.h"
 #include "mainwindowimpl.h"
 #include <string.h>
 #include <stdlib.h>
@@ -32,10 +32,10 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 	setupUi(this);
 	// Restore the previous viewer state.
 	//setup viewer scene
-	viewer->clearScene();
+        viewer->clearScene();
 	viewer->updateGL();
-	viewer->parSetGridIsDrawn(true);
-	viewer->parSetFPSIsDrawn(true);	
+        viewer->parSetGridIsDrawn(true);
+        viewer->parSetFPSIsDrawn(true);
 	
 	//connect(actionFullscreen, SIGNAL(toggled(bool)), MainWindow, SLOT(fullscreen(bool)));
 	
@@ -43,19 +43,19 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 
 void MainWindowImpl::OpenFile()
 {
-	viewer->loadFile("");
+        //viewer->loadFile("");
 }
 
 void MainWindowImpl::cube()
 {
 	printf("// Cube Drawn \n");
-	viewer->drawCube();
+        viewer->drawCube();
 }
 
 void MainWindowImpl::spiral()
 {
 	printf("// Spiral Drawn \n");
-	viewer->drawSpiral();
+        viewer->drawSpiral();
 }
 
 //
