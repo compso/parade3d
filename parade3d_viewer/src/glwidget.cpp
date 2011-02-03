@@ -86,9 +86,10 @@ void GLWidget::loadFile(QString filename)
         if (filename.isEmpty()){
                 QStringList filters;
                 QStringList names;
-                filters << "Mesh files (*.msh *.MSH)"
+                filters << "Parade files (*.pa *.pb)"
+                        << "Parade ASCII (*.pa)"
+                        << "Parade BINARY (*.pb)"
                                 << "3DS (*.3ds)"
-                                << "Candylab Mesh (*.ca *.cb)"
                                 << "Any files (*)";
                                 QFileDialog dialog(this);
                                 dialog.setFilters(filters);
