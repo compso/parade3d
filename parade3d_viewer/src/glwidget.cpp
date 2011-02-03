@@ -1,43 +1,19 @@
-/****************************************************************************
-**
-** Copyright (C) 2009 Nokia Corporation and/or its subsidiary(-ies).
-** Contact: Qt Software Information (qt-info@nokia.com)
-**
-** This file is part of the example classes of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:LGPL$
-** Commercial Usage
-** Licensees holding valid Qt Commercial licenses may use this file in
-** accordance with the Qt Commercial License Agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and Nokia.
-**
-** GNU Lesser General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU Lesser
-** General Public License version 2.1 as published by the Free Software
-** Foundation and appearing in the file LICENSE.LGPL included in the
-** packaging of this file.  Please review the following information to
-** ensure the GNU Lesser General Public License version 2.1 requirements
-** will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
-**
-** In addition, as a special exception, Nokia gives you certain
-** additional rights. These rights are described in the Nokia Qt LGPL
-** Exception version 1.0, included in the file LGPL_EXCEPTION.txt in this
-** package.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 3.0 as published by the Free Software
-** Foundation and appearing in the file LICENSE.GPL included in the
-** packaging of this file.  Please review the following information to
-** ensure the GNU General Public License version 3.0 requirements will be
-** met: http://www.gnu.org/copyleft/gpl.html.
-**
-** If you are unsure which license is appropriate for your use, please
-** contact the sales department at qt-sales@nokia.com.
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+/************************************************
+
+    Parade3d -- 3d model viewer
+    Copyright (C) 2009 Ashley James Retallack
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+*************************************************/
 
 #include <QtGui>
 #include <QtOpenGL>
@@ -67,6 +43,9 @@
 
 std::vector<XMesh*> meshes;
 
+GLfloat polyfactor = 1.0;
+GLfloat polyunits = 1.0;
+
 using namespace std;
 
 
@@ -84,6 +63,7 @@ GLWidget::GLWidget(QWidget *parent)
     xRot = 0;
     yRot = 0;
     zRot = 0;
+    zoom = -60.0f;
     gear1Rot = 0;
 
     QTimer *timer = new QTimer(this);
@@ -174,7 +154,7 @@ void GLWidget::drawCornerAxis()
         glClear(GL_DEPTH_BUFFER_BIT);
 
         // Tune for best line rendering
-    glDisable(GL_LIGHTING);
+        glDisable(GL_LIGHTING);
         glLineWidth(2.0);
 
         glMatrixMode(GL_PROJECTION);
@@ -185,7 +165,6 @@ void GLWidget::drawCornerAxis()
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
         glLoadIdentity();
-        //glMultMatrixd(camera()->orientation().inverse().matrix());
 
         glBegin(GL_LINES);
         glColor3f(1.0, 0.0, 0.0);
@@ -311,6 +290,191 @@ void GLWidget::handleFPS(void)
   }
 }
 
+void GLWidget::initializeGL()
+{
+    static const GLfloat lightPos[4] = { 5.0f, 5.0f, 10.0f, 1.0f };
+    static const GLfloat reflectance1[4] = { 0.8f, 0.1f, 0.0f, 1.0f };
+    static const GLfloat reflectance2[4] = { 0.0f, 0.8f, 0.2f, 1.0f };
+    static const GLfloat reflectance3[4] = { 0.2f, 0.2f, 1.0f, 1.0f };
+
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
+
+   // gear1 = makeGear(reflectance1, 1.0, 4.0, 1.0, 0.7, 20);
+   // gear2 = makeGear(reflectance2, 0.5, 2.0, 2.0, 0.7, 10);
+   // gear3 = makeGear(reflectance3, 1.3, 2.0, 0.5, 0.7, 10);
+
+    glEnable(GL_NORMALIZE);
+        //set bgcolor start
+     //   qglClearColor(QColor(100,100,125,0));
+    //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+
+void GLWidget::paintGL()
+{
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+
+
+        glPushMatrix();
+
+        //get rotaion fom mouse movment
+
+        glRotated(xRot / 16.0, 1.0, 0.0, 0.0);
+        glRotated(yRot / 16.0, 0.0, 1.0, 0.0);
+        glRotated(zRot / 16.0, 0.0, 0.0, 1.0);
+
+
+        //set translation
+
+        glTranslated(0.0, 0.0, zoom);
+
+        // set too top view
+
+        glRotated(+90.0, 1.0, 0.0, 0.0);
+
+        qglClearColor(QColor(100,100,125,0));
+
+
+        glPushMatrix ();
+
+        //enable wireframe
+        //glEnable(GL_LINE_SMOOTH);
+
+        //enable flat
+        glDisable(GL_LIGHTING);
+        glShadeModel(GL_FLAT);
+
+        glEnable(GL_POLYGON_OFFSET_FILL);
+        glPolygonOffset(polyfactor, polyunits);
+
+        //enable smooth polys
+        //glEnable(GL_POLYGON_SMOOTH);
+        //glShadeModel(GL_SMOOTH);
+
+        //enable texture preview
+
+        for (int i=0; i<int(scene_.size()); i++)
+                scene_.at(i)->draw();
+
+        DrawMeshes(meshes);
+
+        if (int(spirals_.size()) >= 1){
+                for (int i=0; i<int(spirals_.size()); i++)
+                        spirals_.at(i)->spiral(false, 0,0,0);
+        }
+
+        if (int(cubes_.size()) >= 1){
+                for (int i=0; i<int(cubes_.size()); i++)
+                        cubes_.at(i)->cube(false,0,0,0);
+        }
+
+        glDisable(GL_POLYGON_OFFSET_FILL);
+
+        //enable wire overlay
+        glDisable(GL_LIGHTING);
+        glColor3f (0,0,0);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+        for (int i=0; i<int(scene_.size()); i++)
+                scene_.at(i)->draw();
+
+        DrawMeshes(meshes);
+
+        if (int(spirals_.size()) >= 1){
+                for (int i=0; i<int(spirals_.size()); i++)
+                        spirals_.at(i)->spiral(true,0,0,0);
+        }
+
+        if (int(cubes_.size()) >= 1){
+                for (int i=0; i<int(cubes_.size()); i++)
+                        cubes_.at(i)->cube(true,0,0,0);
+        }
+
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+        glPopMatrix ();
+        glFlush ();
+
+        qglColor(QColor(255,255,255,255));
+
+        //grid
+        if (parGridIsDrawn()) { glLineWidth(1.0); myDrawGrid(10); }
+
+        //print the current camera position
+        //Vec pos = camera()->position();
+        //printf("current position %f,%f,%f\n", pos[0], pos[1], pos[2]);
+        //Quaternion orr = camera()->orientation();
+        //printf("current orientation %f,%f,%f,%f\n", orr[0], orr[1], orr[2], orr[3]);
+
+
+
+    glPopMatrix();
+
+
+        drawCornerAxis();
+
+        //fps display
+        if (parFPSIsDrawn()) { handleFPS();}
+}
+
+
+void GLWidget::draw()
+{
+
+}
+
+void GLWidget::resizeGL(int width, int height)
+{
+	
+    int side = qMax(width, height);
+    //glViewport( 0, 0, GLint(width), GLint(height) );
+    glViewport((width - side) / 2, (height - side) / 2, side, side);
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glFrustum(-1.0, +1.0, -1.0, 1.0, 5.0, 1000.0);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslated(0.0, 0.0, -60.0);
+
+}
+
+void GLWidget::mousePressEvent(QMouseEvent *event)
+{
+    lastPos = event->pos();
+}
+
+void GLWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    int dx = event->x() - lastPos.x();
+    int dy = event->y() - lastPos.y();
+
+    if (event->buttons() & Qt::LeftButton) {
+        setXRotation(xRot + 8 * dy);
+        setYRotation(yRot + 8 * dx);
+    } else if (event->buttons() & Qt::RightButton) {
+
+        setZoom(zoom+dy);
+    }
+
+    lastPos = event->pos();
+}
+
+void GLWidget::setZoom(float distance)
+{
+    if (distance != zoom) {
+        zoom = distance;
+        //emit zoomChanged(distance);
+        updateGL();
+    }
+}
+
 void GLWidget::setXRotation(int angle)
 {
     normalizeAngle(&angle);
@@ -339,77 +503,6 @@ void GLWidget::setZRotation(int angle)
         emit zRotationChanged(angle);
         updateGL();
     }
-}
-
-void GLWidget::initializeGL()
-{
-    static const GLfloat lightPos[4] = { 5.0f, 5.0f, 10.0f, 1.0f };
-    static const GLfloat reflectance1[4] = { 0.8f, 0.1f, 0.0f, 1.0f };
-    static const GLfloat reflectance2[4] = { 0.0f, 0.8f, 0.2f, 1.0f };
-    static const GLfloat reflectance3[4] = { 0.2f, 0.2f, 1.0f, 1.0f };
-
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_DEPTH_TEST);
-
-    gear1 = makeGear(reflectance1, 1.0, 4.0, 1.0, 0.7, 20);
-    gear2 = makeGear(reflectance2, 0.5, 2.0, 2.0, 0.7, 10);
-    gear3 = makeGear(reflectance3, 1.3, 2.0, 0.5, 0.7, 10);
-
-    glEnable(GL_NORMALIZE);
-        //set bgcolor start
-        qglClearColor(QColor(100,100,125,0));
-    //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-}
-
-void GLWidget::paintGL()
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glPushMatrix();
-    glRotated(xRot / 16.0, 1.0, 0.0, 0.0);
-    glRotated(yRot / 16.0, 0.0, 1.0, 0.0);
-    glRotated(zRot / 16.0, 0.0, 0.0, 1.0);
-
-    drawGear(gear1, -3.0, -2.0, 0.0, gear1Rot / 16.0);
-    drawGear(gear2, +3.1, -2.0, 0.0, -2.0 * (gear1Rot / 16.0) - 9.0);
-
-    glRotated(+90.0, 1.0, 0.0, 0.0);
-    drawGear(gear3, -3.1, -1.8, -2.2, +2.0 * (gear1Rot / 16.0) - 2.0);
-
-    glPopMatrix();
-}
-
-void GLWidget::resizeGL(int width, int height)
-{
-    int side = qMin(width, height);
-    glViewport((width - side) / 2, (height - side) / 2, side, side);
-
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glFrustum(-1.0, +1.0, -1.0, 1.0, 5.0, 60.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glTranslated(0.0, 0.0, -40.0);
-}
-
-void GLWidget::mousePressEvent(QMouseEvent *event)
-{
-    lastPos = event->pos();
-}
-
-void GLWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    int dx = event->x() - lastPos.x();
-    int dy = event->y() - lastPos.y();
-
-    if (event->buttons() & Qt::LeftButton) {
-        setXRotation(xRot + 8 * dy);
-        setYRotation(yRot + 8 * dx);
-    }
-
-    lastPos = event->pos();
 }
 
 void GLWidget::advanceGears()

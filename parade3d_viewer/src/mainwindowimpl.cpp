@@ -43,7 +43,7 @@ MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f)
 
 void MainWindowImpl::OpenFile()
 {
-        //viewer->loadFile("");
+        viewer->loadFile("");
 }
 
 void MainWindowImpl::cube()

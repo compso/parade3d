@@ -41,7 +41,7 @@
 ///
 //-------------------------------------------------------------------------------
 
-#include "../glview.h"
+#include "../glwidget.h"
 #include "Mesh.h"
 #include <assert.h>
 #include <string.h>
