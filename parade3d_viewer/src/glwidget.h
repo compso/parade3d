@@ -65,6 +65,8 @@ public slots :
         void setYRotation(int angle);
         void setZRotation(int angle);
         void setZoom(float distance);
+        void setXTrns(float distance);
+        void setYTrns(float distance);
 
 signals:
         void parGridIsDrawnChanged(bool drawn);
@@ -119,6 +121,8 @@ private:
     int xRot;
     int yRot;
     int zRot;
+    float xTrns;
+    float yTrns;
     float zoom;
     int gear1Rot;
     

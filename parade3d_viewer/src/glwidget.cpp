@@ -185,6 +185,15 @@ void GLWidget::drawCornerAxis()
         glPopMatrix();
 
         glMatrixMode(GL_MODELVIEW);
+
+        gluLookAt(0,0,zoom,
+                  0,0,0,
+                  0,1,0);
+        glRotatef(-xRot/16.0, 1.f, 0.f, 0.f);/* orbit the x axis */
+        glRotatef(yRot/16.0, 0.f, 1.f, 0.f);/* orbit the Y axis */
+        glRotatef(zRot/16.0, 0.f, 0.f, 1.f);/* orbit the Y axis */
+
+
         glPopMatrix();
 
         glEnable(GL_LIGHTING);
@@ -241,6 +250,7 @@ void GLWidget::myDrawGrid(float size, int nbSubdivisions)
 
 void GLWidget::postDraw()
 {
+
         drawCornerAxis();
 
         //fps display
@@ -332,17 +342,17 @@ void GLWidget::paintGL()
 
         //set translation
 
-        //glTranslated(0.0, 0.0, zoom);
+        glTranslated(0.0, 0.0, zoom);
 
         // set too top view
 
        // glRotated(+90.0, 1.0, 0.0, 0.0);
 
 
-        gluLookAt(0,0,zoom,
+        gluLookAt(0,0,20,
                   0,0,0,
-                  0,1,0);
-        glRotatef(-xRot/16.0, 1.f, 0.f, 0.f);/* orbit the x axis */
+                  0,.1,0);
+        glRotatef(xRot/16.0, 1.f, 0.f, 0.f);/* orbit the x axis */
         glRotatef(yRot/16.0, 0.f, 1.f, 0.f);/* orbit the Y axis */
         glRotatef(zRot/16.0, 0.f, 0.f, 1.f);/* orbit the Y axis */
         qglClearColor(QColor(100,100,125,0));
@@ -420,11 +430,11 @@ void GLWidget::paintGL()
         //printf("current orientation %f,%f,%f,%f\n", orr[0], orr[1], orr[2], orr[3]);
 
 
-
-    glPopMatrix();
-
-
         drawCornerAxis();
+
+        glPopMatrix();
+
+
 
         //fps display
         if (parFPSIsDrawn()) { handleFPS();}
@@ -469,6 +479,10 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     } else if (event->buttons() & Qt::RightButton) {
 
         setZoom(zoom+dy);
+    } else if (event->buttons() & Qt::MidButton) {
+
+        setXTrns(xTrns+dx);
+        setYTrns(yTrns+dy);
     }
 
     lastPos = event->pos();
@@ -478,6 +492,23 @@ void GLWidget::setZoom(float distance)
 {
     if (distance != zoom) {
         zoom = distance;
+        //emit zoomChanged(distance);
+        updateGL();
+    }
+}
+
+void GLWidget::setXTrns(float distance)
+{
+    if (distance != xTrns) {
+        xTrns = distance;
+        //emit zoomChanged(distance);
+        updateGL();
+    }
+}
+void GLWidget::setYTrns(float distance)
+{
+    if (distance != yTrns) {
+        yTrns = distance;
         //emit zoomChanged(distance);
         updateGL();
     }
