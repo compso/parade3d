@@ -325,19 +325,26 @@ void GLWidget::paintGL()
 
         //get rotaion fom mouse movment
 
-        glRotated(xRot / 16.0, 1.0, 0.0, 0.0);
-        glRotated(yRot / 16.0, 0.0, 1.0, 0.0);
-        glRotated(zRot / 16.0, 0.0, 0.0, 1.0);
+        //glRotated(xRot / 16.0, 1.0, 0.0, 0.0);
+        //glRotated(yRot / 16.0, 0.0, 1.0, 0.0);
+        //glRotated(zRot / 16.0, 0.0, 0.0, 1.0);
 
 
         //set translation
 
-        glTranslated(0.0, 0.0, zoom);
+        //glTranslated(0.0, 0.0, zoom);
 
         // set too top view
 
-        glRotated(+90.0, 1.0, 0.0, 0.0);
+       // glRotated(+90.0, 1.0, 0.0, 0.0);
 
+
+        gluLookAt(0,0,zoom,
+                  0,0,0,
+                  0,1,0);
+        glRotatef(-xRot/16.0, 1.f, 0.f, 0.f);/* orbit the x axis */
+        glRotatef(yRot/16.0, 0.f, 1.f, 0.f);/* orbit the Y axis */
+        glRotatef(zRot/16.0, 0.f, 0.f, 1.f);/* orbit the Y axis */
         qglClearColor(QColor(100,100,125,0));
 
 
